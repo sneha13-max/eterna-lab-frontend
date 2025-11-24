@@ -1,69 +1,66 @@
-# Eterna Labs Frontend
+````markdown
+# Trading Platform Creator
 
-Eterna Labs is a responsive Next.js dashboard that streams live token market data with Solana/BNB switching, curated column presets, and adjustable display controls. The layout is optimized down to 320 px, so the experience scales cleanly from phones to ultrawide monitors.
+Trading Platform is a responsive crypto dashboard featuring live market data streams, customizable display settings, and interactive token analysis.
 
 ## Features
-- **Live Pulse Feed** – Three analytical columns (New Pairs, Final Stretch, Migrated) sourced via the `useWebSocket` hook and sortable via presets or manual filters.
-- **Customizable Display** – Display modal settings, column filters, and token detail overlays powered by shared context.
-- **Interactive Token Cards** – Rich metadata, tooltips, hover zoom, badges, and quick metrics with progress indicators.
-- **Tailwind-Driven Responsiveness** – `xs` (320 px) breakpoint, mobile-friendly nav/sidebar/footer, and stackable grids for small screens.
-- **Auto Layout Snapshots** – Planned gallery showing desktop/tablet/mobile states (see below for placeholders).
+
+* **Live Market Feed** – Real-time simulated updates for "New Pairs", "Final Stretch", and "Migrated" columns.
+* **Responsive Design** – Fully optimized layout that scales from mobile (320px) to ultrawide desktops.
+* **Interactive UI** – Custom modals for filtering, token details, and display settings (Dark/Grey themes, toggle decimals, etc.).
+* **Chain Selection** – Switch between BNB and SOL chains with preserved UI states.
 
 ## Tech Stack
-- [Next.js 13](https://nextjs.org/) (App Router, client components)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/) with custom `xs` breakpoint
-- [Lucide Icons](https://lucide.dev/) for consistent iconography
-- Context API + custom hooks for display settings and live data
 
-## Getting Started
-```bash
-pnpm install   # or npm install / yarn install
-pnpm dev       # start the development server
-pnpm build     # create a production build
-pnpm start     # run the production server
-```
-
-> **Note:** If you prefer npm or yarn, replace the commands above with your package manager equivalents. There is no dedicated lint command yet; run `next lint` or add a custom script as needed.
+* **Framework:** [Next.js 15+ (App Router)](https://nextjs.org/)
+* **Language:** [TypeScript](https://www.typescriptlang.org/)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Icons:** [Lucide React](https://lucide.dev/)
 
 ## Project Structure
-```
-app/                # Next.js app router pages, layout, styles
-components/         # Reusable UI blocks (Navbar, PulseSidebar, TokenCard, etc.)
-contexts/           # Display settings provider
-lib/                # WebSocket hook, sorting helpers, utility functions
-tailwind.config.js  # Tailwind theme, screens, plugins
-```
 
-## Responsive Design Notes
-- `xs (320px)`, `sm (640px)`, `lg`, and `xl` utilities orchestrate the layout.
-- Pulse toolbar wraps into two rows on mobile, column grid collapses to 1/2/3.
-- Navbar, sidebar, token cards, skeletons, and footer each have mobile-specific adjustments (hamburger menu, horizontal scroll guards, condensed info blocks).
+Unlike traditional Next.js projects, this codebase uses an "Extreme Monolith" pattern to minimize file count:
 
-## Auto Layout Snapshots
-Add exported screenshots to `public/screenshots/` (or your preferred directory) and update the table below with their filenames.
+```text
+src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   └── icon.png
+├── tailwind.config.js
+└── next.config.js
+````
 
-| Viewport | Description | Screenshot |
-|----------|-------------|------------|
-| Desktop (1440px) | Full Pulse dashboard with three analytical columns | ![Desktop](app/Screenshot%202025-11-20%20134732.png) |
-| Tablet (768px) | Two-column grid, stacked controls | ![Tablet](app/Screenshot%202025-11-20%20134943.png) ||
-| Mobile (320px) | Auto-layout stress test | ![320px](app/Screenshot%202025-11-20%20135003.png) |
+## Getting Started
 
-Replace the placeholder image paths once the auto-layout snapshots are ready.
+1.  **Install Dependencies:**
+
+    ```bash
+    npm install
+    # or
+    pnpm install
+    # or
+    yarn install
+    ```
+
+2.  **Run Development Server:**
+
+    ```bash
+    npm run dev
+    ```
+
+3.  **Open in Browser:**
+    Navigate to [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) to view the dashboard.
+
+## Customization
+
+Since all logic is in `app/page.tsx`, you can make changes directly:
+
+  * **Modify Mock Data:** Search for `const TOKENS` or `getColumnData` to change the initial token list.
+  * **Adjust Refresh Rate:** Look for the `useEffect` hook containing `setInterval` to change the 2-second update frequency.
+  * **Theme Colors:** Update the `bg-[#...]` classes or extend `tailwind.config.js`.
 
 ## Deployment
-1. Configure environment variables (if any future API keys are added) in a `.env.local`.
-2. Run `pnpm build`.
-3. Deploy the `.next` output via Vercel, Netlify, or your preferred host.
-4. Live preview: [https://eterna-labs-frontend-1jtv.vercel.app/](https://eterna-labs-frontend-1jtv.vercel.app/)
 
-## Contributing
-1. Fork and clone the repository.
-2. Create a feature branch.
-3. Keep changes accessible at 320 px, and document any new responsive utilities.
-4. Open a pull request describing scope plus screenshots for key breakpoints.
-
----
-
-Ready for screenshots: update the “Auto Layout Snapshots” table once assets are available. Let me know if you need a template for exporting them.
-
+Navigate to [https://eterna-lab-crypto-trading.vercel.app/]([https://www.google.com/search?q=http://localhost:3000](https://eterna-lab-crypto-trading.vercel.app/)) to view the dashboard live.
